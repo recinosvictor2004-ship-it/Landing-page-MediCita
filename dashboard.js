@@ -1,20 +1,14 @@
-// PROMPT: Sidebar hamburguesa + usuario desde localStorage
-// - Mostrar nombre del usuario registrado
-// - Sidebar colapsable con transición
-// - Botón hamburguesa ≡ / X
-// - Cerrar sesión limpia localStorage y vuelve a la landing
-
+// SIDEBAR + USUARIO
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const nombreUsuarioSpan = document.getElementById("nombreUsuario");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  // Cargar usuario desde localStorage
   const usuarioStr = localStorage.getItem("medicitaUsuario");
   if (usuarioStr) {
-    const usuario = JSON.parse(usuarioStr);
-    nombreUsuarioSpan.textContent = usuario.nombre;
+    const usuarioLocal = JSON.parse(usuarioStr);
+    nombreUsuarioSpan.textContent = usuarioLocal.nombre;
   }
 
   let isOpen = false;
@@ -46,10 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   });
 });
+
+// CAMBIO DE SECCIONES
 function mostrarSeccion(id) {
-  document.querySelectorAll('.seccion').forEach(sec => sec.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll(".seccion").forEach(sec => sec.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
 }
+
+// PAGOS
 let pagosPendientes = [
   { id: 1, descripcion: "Consulta Psicología", monto: 150000 },
   { id: 2, descripcion: "Consulta Dermatología", monto: 180000 }
@@ -92,23 +90,23 @@ function eliminarPago(id) {
   pagosPendientes = pagosPendientes.filter(p => p.id !== id);
   renderizarPagos();
 }
-// Abrir modal de pago
+
 document.getElementById("btnAgregarPago").addEventListener("click", () => {
   document.getElementById("formPago").reset();
   document.getElementById("modalPago").classList.remove("hidden");
 });
 
-// Cerrar modal de pago
 document.getElementById("cerrarModalPago").addEventListener("click", () => {
   document.getElementById("modalPago").classList.add("hidden");
 });
 
-// Guardar nuevo pago
 document.getElementById("formPago").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const nuevoPago = {
-    id: pagosPendientes.length ? pagosPendientes[pagosPendientes.length - 1].id + 1 : 1,
+    id: pagosPendientes.length
+      ? pagosPendientes[pagosPendientes.length - 1].id + 1
+      : 1,
     descripcion: document.getElementById("pagoDescripcion").value,
     monto: Number(document.getElementById("pagoMonto").value)
   };
@@ -118,6 +116,7 @@ document.getElementById("formPago").addEventListener("submit", (e) => {
   document.getElementById("modalPago").classList.add("hidden");
 });
 
+// PERFIL
 const usuario = {
   nombre: "Victor Recinos",
   email: "victor@example.com",
@@ -131,7 +130,35 @@ function renderizarPerfil() {
   document.getElementById("perfilCiudad").textContent = usuario.ciudad;
   document.getElementById("perfilEPS").textContent = usuario.eps;
 }
+
+document.getElementById("btnEditarPerfil").addEventListener("click", () => {
+  document.getElementById("perfilNombreInput").value = usuario.nombre;
+  document.getElementById("perfilEmailInput").value = usuario.email;
+  document.getElementById("perfilCiudadInput").value = usuario.ciudad;
+  document.getElementById("perfilEPSInput").value = usuario.eps;
+
+  document.getElementById("modalPerfil").classList.remove("hidden");
+});
+
+document.getElementById("cerrarModalPerfil").addEventListener("click", () => {
+  document.getElementById("modalPerfil").classList.add("hidden");
+});
+
+document.getElementById("formPerfil").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  usuario.nombre = document.getElementById("perfilNombreInput").value;
+  usuario.email = document.getElementById("perfilEmailInput").value;
+  usuario.ciudad = document.getElementById("perfilCiudadInput").value;
+  usuario.eps = document.getElementById("perfilEPSInput").value;
+
+  renderizarPerfil();
+  document.getElementById("modalPerfil").classList.add("hidden");
+});
+
+// CITAS
 document.getElementById("btnCrearCita").addEventListener("click", () => {
+  document.getElementById("formCita").reset();
   document.getElementById("modalCita").classList.remove("hidden");
 });
 
@@ -154,6 +181,7 @@ document.getElementById("formCita").addEventListener("submit", (e) => {
   agregarCitaATabla(nuevaCita);
   document.getElementById("modalCita").classList.add("hidden");
 });
+
 function agregarCitaATabla(cita) {
   const tbody = document.querySelector(".appointments-table tbody");
 
@@ -169,32 +197,7 @@ function agregarCitaATabla(cita) {
 
   tbody.appendChild(tr);
 }
-// Abrir modal de perfil
-document.getElementById("btnEditarPerfil").addEventListener("click", () => {
-  document.getElementById("perfilNombreInput").value = usuario.nombre;
-  document.getElementById("perfilEmailInput").value = usuario.email;
-  document.getElementById("perfilCiudadInput").value = usuario.ciudad;
-  document.getElementById("perfilEPSInput").value = usuario.eps;
 
-  document.getElementById("modalPerfil").classList.remove("hidden");
-});
-
-// Cerrar modal de perfil
-document.getElementById("cerrarModalPerfil").addEventListener("click", () => {
-  document.getElementById("modalPerfil").classList.add("hidden");
-});
-
-// Guardar cambios de perfil
-document.getElementById("formPerfil").addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  usuario.nombre = document.getElementById("perfilNombreInput").value;
-  usuario.email = document.getElementById("perfilEmailInput").value;
-  usuario.ciudad = document.getElementById("perfilCiudadInput").value;
-  usuario.eps = document.getElementById("perfilEPSInput").value;
-
-  renderizarPerfil();
-  document.getElementById("modalPerfil").classList.add("hidden");
-});
+// Inicializar
 renderizarPagos();
 renderizarPerfil();
