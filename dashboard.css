@@ -1,0 +1,189 @@
+:root {
+  --sidebar-width: 240px;
+  --color-primary: #2b7de9;
+  --color-bg: #f5f7fb;
+  --color-light: #ffffff;
+  --color-text: #1f2933;
+  --color-alt-row: #edf2f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background-color: var(--color-bg);
+}
+
+.layout {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-light);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.sidebar--hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar__logo {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.sidebar__nav a {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.sidebar__user {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* CONTENT */
+.content {
+  margin-left: var(--sidebar-width);
+  padding: 1.5rem;
+  width: 100%;
+}
+
+/* HAMBURGER */
+.hamburger-btn {
+  display: none;
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* KPI CARDS */
+.kpi-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background-color: var(--color-light);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.kpi-card__icon {
+  font-size: 1.8rem;
+}
+
+.kpi-card__value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* PROGRESS */
+.progress {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 999px;
+  margin: 0.5rem 0;
+}
+
+.progress__bar {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 999px;
+}
+
+/* TABLE */
+.table-section h2 {
+  margin-bottom: 1rem;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-light);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.appointments-table thead {
+  background-color: #e2e8f0;
+}
+
+.row-alt {
+  background-color: var(--color-alt-row);
+}
+
+/* BADGES */
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.badge--confirmed {
+  background-color: #2b7de9;
+}
+
+.badge--completed {
+  background-color: #38a169;
+}
+
+.badge--cancelled {
+  background-color: #d69e2e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+  }
+
+  .hamburger-btn {
+    display: inline-block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.sidebar--visible {
+    transform: translateX(0);
+  }
+
+  .col-doctor,
+  .col-date {
+    display: none;
+  }
+}

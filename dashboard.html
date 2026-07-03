@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard paciente - MediCita</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar__logo">MediCita</div>
+      <nav class="sidebar__nav">
+        <a href="#">Inicio</a>
+        <a href="#">Mis citas</a>
+        <a href="#">Pagos</a>
+        <a href="#">Perfil</a>
+      </nav>
+      <div class="sidebar__user">
+        <img src="https://placehold.co/64x64" alt="Avatar">
+        <span>Paciente Demo</span>
+        <button class="btn-logout">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <button class="hamburger-btn" id="hamburgerBtn">≡</button>
+
+      <section class="kpi-section">
+        <div class="kpi-card">
+          <div class="kpi-card__icon">📅</div>
+          <div class="kpi-card__body">
+            <h3>Citas activas</h3>
+            <p class="kpi-card__value">3</p>
+            <span class="kpi-card__delta">+1 vs mes anterior</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card__icon">✅</div>
+          <div class="kpi-card__body">
+            <h3>Adherencia al tratamiento</h3>
+            <p class="kpi-card__value">88%</p>
+            <div class="progress">
+              <div class="progress__bar" style="width: 88%;"></div>
+            </div>
+            <span class="kpi-card__delta">+5% vs mes anterior</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card__icon">💳</div>
+          <div class="kpi-card__body">
+            <h3>Próximo pago</h3>
+            <p class="kpi-card__value">2026-07-15</p>
+            <span class="kpi-card__delta">Consulta en COP 120.000</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <h2>Mis citas</h2>
+        <table class="appointments-table">
+          <thead>
+            <tr>
+              <th>Especialidad</th>
+              <th class="col-doctor">Médico</th>
+              <th>Modalidad</th>
+              <th class="col-date">Fecha</th>
+              <th>Precio COP</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Psicología</td>
+              <td class="col-doctor">Dra. Gómez</td>
+              <td>Virtual</td>
+              <td class="col-date">2026-07-10</td>
+              <td>150.000</td>
+              <td><span class="badge badge--confirmed">Confirmada</span></td>
+            </tr>
+            <tr class="row-alt">
+              <td>Medicina general</td>
+              <td class="col-doctor">Dr. Pérez</td>
+              <td>Virtual</td>
+              <td class="col-date">2026-07-05</td>
+              <td>90.000</td>
+              <td><span class="badge badge--completed">Completada</span></td>
+            </tr>
+            <tr>
+              <td>Dermatología</td>
+              <td class="col-doctor">Dra. Ruiz</td>
+              <td>Presencial</td>
+              <td class="col-date">2026-07-20</td>
+              <td>180.000</td>
+              <td><span class="badge badge--cancelled">Cancelada</span></td>
+            </tr>
+            <!-- agrega más filas de ejemplo si quieres -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
