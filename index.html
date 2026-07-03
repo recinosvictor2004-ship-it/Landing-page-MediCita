@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MediCita - Telemedicina</title>
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+  <header id="inicio">
+    <nav class="nav">
+      <div class="nav__logo">MediCita</div>
+      <ul class="nav__menu">
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#estadisticas">Estadísticas</a></li>
+        <li><a href="#registro">Registro</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="hero__content">
+        <h1>Tu cita médica virtual, sin filas ni tráfico</h1>
+        <p>Agenda consultas con médicos certificados desde cualquier ciudad de Colombia.</p>
+        <a href="#registro" class="btn btn--primary">Regístrate ahora</a>
+      </div>
+      <div class="hero__image">
+        <img src="https://placehold.co/480x320" alt="Telemedicina MediCita">
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="especialidades" class="section section--light">
+      <h2>Especialidades médicas</h2>
+      <div class="grid grid--specialties">
+        <article class="card">
+          <h3>Medicina general</h3>
+          <p>Atención integral para tus necesidades básicas de salud.</p>
+        </article>
+        <article class="card">
+          <h3>Pediatría</h3>
+          <p>Cuidado especializado para niñas y niños.</p>
+        </article>
+        <article class="card">
+          <h3>Psicología</h3>
+          <p>Apoyo emocional y salud mental.</p>
+        </article>
+        <article class="card">
+          <h3>Dermatología</h3>
+          <p>Diagnóstico y tratamiento de problemas de piel.</p>
+        </article>
+        <article class="card">
+          <h3>Nutrición</h3>
+          <p>Planes alimenticios personalizados.</p>
+        </article>
+        <article class="card">
+          <h3>Ginecología</h3>
+          <p>Salud integral de la mujer.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="estadisticas" class="section">
+      <h2>Resultados que generan confianza</h2>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__value">15.000+</span>
+          <span class="stat__label">Pacientes atendidos</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">200+</span>
+          <span class="stat__label">Médicos aliados</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">97%</span>
+          <span class="stat__label">Satisfacción</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonios" class="section section--light">
+      <h2>Testimonios de pacientes</h2>
+      <div class="grid grid--testimonials">
+        <article class="testimonial">
+          <p>"Pude hablar con un médico en menos de 30 minutos, sin salir de casa."</p>
+          <span class="testimonial__author">Laura, Bogotá</span>
+        </article>
+        <article class="testimonial">
+          <p>"Ideal para controles frecuentes, me ahorra tiempo y dinero."</p>
+          <span class="testimonial__author">Carlos, Medellín</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="registro" class="section">
+      <h2>Regístrate para tu próxima cita</h2>
+      <form class="form">
+        <div class="form__group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form__group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn btn--primary">Crear cuenta</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MediCita © 2026</p>
+    <div class="footer__social">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </footer>
+
+  <button class="floating-btn">Agendar cita</button>
+</body>
+</html>
