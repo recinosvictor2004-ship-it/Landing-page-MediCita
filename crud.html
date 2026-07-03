@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de pacientes - MediCita</title>
+  <link rel="stylesheet" href="crud.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Gestión de pacientes MediCita</h1>
+  </header>
+
+  <main class="main">
+    <section class="filters">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre o email">
+      <select id="cityFilter">
+        <option value="">Todas las ciudades</option>
+        <option value="Bogotá">Bogotá</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Cali">Cali</option>
+        <option value="Barranquilla">Barranquilla</option>
+        <option value="Cartagena">Cartagena</option>
+      </select>
+      <select id="specialtyFilter">
+        <option value="">Todas las especialidades</option>
+        <option value="Medicina general">Medicina general</option>
+        <option value="Pediatría">Pediatría</option>
+        <option value="Psicología">Psicología</option>
+        <option value="Dermatología">Dermatología</option>
+        <option value="Nutrición">Nutrición</option>
+        <option value="Ginecología">Ginecología</option>
+      </select>
+      <button id="addPatientBtn">Agregar paciente</button>
+    </section>
+
+    <section class="cards-container" id="cardsContainer">
+      <!-- aquí se renderizan las cards -->
+    </section>
+
+    <section class="chart-section">
+      <canvas id="chartEspecialidades"></canvas>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="patientModal">
+    <div class="modal__content">
+      <h2 id="modalTitle">Nuevo paciente</h2>
+      <form id="patientForm">
+        <input type="hidden" id="patientId">
+        <div class="form__group">
+          <label>Nombre</label>
+          <input type="text" id="nombreInput" required>
+        </div>
+        <div class="form__group">
+          <label>Email</label>
+          <input type="email" id="emailInput" required>
+        </div>
+        <div class="form__group">
+          <label>Ciudad</label>
+          <input type="text" id="ciudadInput" required>
+        </div>
+        <div class="form__group">
+          <label>Especialidad</label>
+          <input type="text" id="especialidadInput" required>
+        </div>
+        <div class="form__group">
+          <label>Edad</label>
+          <input type="number" id="edadInput" required>
+        </div>
+        <div class="form__group">
+          <label>EPS</label>
+          <input type="text" id="epsInput" required>
+        </div>
+        <div class="form__group">
+          <label>Monto USD</label>
+          <input type="number" id="montoInput" required>
+        </div>
+        <div class="form__group">
+          <label>Activo</label>
+          <input type="checkbox" id="activoInput">
+        </div>
+        <div class="modal__actions">
+          <button type="submit">Guardar</button>
+          <button type="button" id="closeModalBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="pacientes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

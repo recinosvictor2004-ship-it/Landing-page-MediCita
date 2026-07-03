@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background-color: #f5f7fb;
+}
+
+.header {
+  padding: 1rem 1.5rem;
+  background-color: #2b7de9;
+  color: #fff;
+}
+
+.main {
+  padding: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background-color: #2b7de9;
+  color: #fff;
+}
+
+.card__body p {
+  margin: 0.25rem 0;
+}
+
+.card__actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card__actions button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.card__actions .btn-edit {
+  background-color: #2b7de9;
+  color: #fff;
+}
+
+.card__actions .btn-delete {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal--visible {
+  display: flex;
+}
+
+.modal__content {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.form__group {
+  margin-bottom: 0.75rem;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Chart */
+.chart-section {
+  margin-top: 2rem;
+}
