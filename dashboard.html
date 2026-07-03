@@ -19,9 +19,9 @@
 
       <nav class="sidebar__nav">
   <a onclick="mostrarSeccion('inicio')">Inicio</a>
-  <a onclick="mostrarSeccion('citas')">Mis citas</a>
-  <a onclick="mostrarSeccion('pagos')">Pagos</a>
-  <a onclick="mostrarSeccion('perfil')">Perfil</a>
+<a onclick="mostrarSeccion('citas')">Mis citas</a>
+<a onclick="mostrarSeccion('pagos')">Pagos</a>
+<a onclick="mostrarSeccion('perfil')">Perfil</a>
 </nav>
 
 <section id="inicio" class="seccion visible">
@@ -164,6 +164,140 @@
           </tbody>
         </table>
       </section>
+      <!-- SECCIÓN INICIO (ya existe) -->
+<section id="inicio" class="seccion visible">
+  <!-- Aquí ya tienes tus KPI cards -->
+</section>
+
+<!-- SECCIÓN MIS CITAS (ya existe) -->
+<section id="citas" class="seccion hidden">
+  <!-- Aquí ya tienes tu tabla -->
+  <button id="btnCrearCita" class="btn-create">Crear nueva cita</button>
+</section>
+
+<!-- SECCIÓN PAGOS -->
+<section id="pagos" class="seccion hidden">
+  <h2>Pagos pendientes</h2>
+  <ul id="listaPagosPendientes"></ul>
+
+  <h2>Historial de pagos</h2>
+  <ul id="listaPagosHistorial"></ul>
+</section>
+
+<!-- SECCIÓN PERFIL -->
+<section id="perfil" class="seccion hidden">
+  <h2>Perfil del paciente</h2>
+
+  <p><strong>Nombre:</strong> <span id="perfilNombre"></span></p>
+  <p><strong>Email:</strong> <span id="perfilEmail"></span></p>
+  <p><strong>Ciudad:</strong> <span id="perfilCiudad"></span></p>
+  <p><strong>EPS:</strong> <span id="perfilEPS"></span></p>
+
+  <button id="btnEditarPerfil">Editar perfil</button>
+</section>
+
+<!-- MODAL CREAR CITA -->
+<section id="modalCita" class="modal hidden">
+  <form id="formCita" class="modal-content">
+    <h2>Crear nueva cita</h2>
+
+    <label>Especialidad</label>
+    <select id="citaEspecialidad" required>
+      <option value="Psicología">Psicología</option>
+      <option value="Medicina general">Medicina general</option>
+      <option value="Dermatología">Dermatología</option>
+      <option value="Pediatría">Pediatría</option>
+      <option value="Nutrición">Nutrición</option>
+    </select>
+
+    <label>Médico</label>
+    <input type="text" id="citaMedico" required>
+
+    <label>Modalidad</label>
+    <select id="citaModalidad" required>
+      <option value="Virtual">Virtual</option>
+      <option value="Presencial">Presencial</option>
+    </select>
+
+    <label>Fecha</label>
+    <input type="date" id="citaFecha" required>
+
+    <label>Precio (COP)</label>
+    <input type="number" id="citaPrecio" required>
+
+    <label>Estado</label>
+    <select id="citaEstado">
+      <option value="Confirmada">Confirmada</option>
+      <option value="Completada">Completada</option>
+      <option value="Cancelada">Cancelada</option>
+    </select>
+
+    <section class="modal-buttons">
+      <button type="submit" class="btn-save">Guardar</button>
+      <button type="button" id="cerrarModalCita" class="btn-close">Cancelar</button>
+    </section>
+  </form>
+</section>
+<section id="perfil" class="seccion hidden">
+  <h2>Perfil del paciente</h2>
+
+  <p><strong>Nombre:</strong> <span id="perfilNombre"></span></p>
+  <p><strong>Email:</strong> <span id="perfilEmail"></span></p>
+  <p><strong>Ciudad:</strong> <span id="perfilCiudad"></span></p>
+  <p><strong>EPS:</strong> <span id="perfilEPS"></span></p>
+
+  <button id="btnEditarPerfil">Editar perfil</button>
+</section>
+
+<!-- MODAL EDITAR PERFIL -->
+<section id="modalPerfil" class="modal hidden">
+  <form id="formPerfil" class="modal-content">
+    <h2>Editar perfil</h2>
+
+    <label>Nombre</label>
+    <input type="text" id="perfilNombreInput" required>
+
+    <label>Email</label>
+    <input type="email" id="perfilEmailInput" required>
+
+    <label>Ciudad</label>
+    <input type="text" id="perfilCiudadInput" required>
+
+    <label>EPS</label>
+    <input type="text" id="perfilEPSInput" required>
+
+    <section class="modal-buttons">
+      <button type="submit" class="btn-save">Guardar</button>
+      <button type="button" id="cerrarModalPerfil" class="btn-close">Cancelar</button>
+    </section>
+  </form>
+</section>
+<section id="pagos" class="seccion hidden">
+  <h2>Pagos pendientes</h2>
+  <button id="btnAgregarPago" class="btn-create">Agregar pago</button>
+  <ul id="listaPagosPendientes"></ul>
+
+  <h2>Historial de pagos</h2>
+  <ul id="listaPagosHistorial"></ul>
+</section>
+
+<!-- MODAL AGREGAR PAGO -->
+<section id="modalPago" class="modal hidden">
+  <form id="formPago" class="modal-content">
+    <h2>Agregar pago</h2>
+
+    <label>Descripción</label>
+    <input type="text" id="pagoDescripcion" required>
+
+    <label>Monto (COP)</label>
+    <input type="number" id="pagoMonto" required>
+
+    <section class="modal-buttons">
+      <button type="submit" class="btn-save">Guardar</button>
+      <button type="button" id="cerrarModalPago" class="btn-close">Cancelar</button>
+    </section>
+  </form>
+</section>
 
     </main>
 

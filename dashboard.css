@@ -199,6 +199,43 @@ body {
 .badge--cancelled {
   background-color: #d69e2e;
 }
+.seccion.hidden { display: none; }
+.seccion.visible { display: block; }
+
+.btn-create {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* Modal crear cita */
+#modalCita {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modalCita.hidden {
+  display: none;
+}
+
+#formCita {
+  background-color: var(--color-light);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.modal.hidden { display: none; }
 
 /* ===========================
    RESPONSIVE
