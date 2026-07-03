@@ -225,3 +225,5 @@ body {
     display: none;
   }
 }
+.hidden { display: none; }
+.visible { display: block; }

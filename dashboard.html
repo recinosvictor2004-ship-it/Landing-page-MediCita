@@ -18,11 +18,30 @@
       </header>
 
       <nav class="sidebar__nav">
-        <a href="#">Inicio</a>
-        <a href="#">Mis citas</a>
-        <a href="#">Pagos</a>
-        <a href="#">Perfil</a>
-      </nav>
+  <a onclick="mostrarSeccion('inicio')">Inicio</a>
+  <a onclick="mostrarSeccion('citas')">Mis citas</a>
+  <a onclick="mostrarSeccion('pagos')">Pagos</a>
+  <a onclick="mostrarSeccion('perfil')">Perfil</a>
+</nav>
+
+<section id="inicio" class="seccion visible">
+  <!-- Aquí van tus KPI cards -->
+</section>
+
+<section id="citas" class="seccion hidden">
+  <!-- Aquí va tu tabla de citas -->
+</section>
+
+<section id="pagos" class="seccion hidden">
+  <h2>Pagos</h2>
+  <p>Aquí puedes mostrar historial de pagos, próximos pagos, etc.</p>
+</section>
+
+<section id="perfil" class="seccion hidden">
+  <h2>Perfil del paciente</h2>
+  <p>Nombre: <span id="perfilNombre"></span></p>
+  <p>Email: <span id="perfilEmail"></span></p>
+</section>
 
       <section class="sidebar__user">
         <figure>

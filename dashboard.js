@@ -46,3 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   });
 });
+function mostrarSeccion(id) {
+  document.querySelectorAll('.seccion').forEach(sec => sec.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
