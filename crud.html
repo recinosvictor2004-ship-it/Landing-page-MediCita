@@ -2,18 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Gestión de pacientes - MediCita</title>
-  <link rel="stylesheet" href="crud.css">
+  <title>MediCita - Gestión de Pacientes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-  <header class="header">
-    <h1>Gestión de pacientes MediCita</h1>
+
+  <header>
+    <h1>Gestión de Pacientes - MediCita</h1>
   </header>
 
-  <main class="main">
+  <main>
+
+    <!-- BÚSQUEDA Y FILTROS -->
     <section class="filters">
       <input type="text" id="searchInput" placeholder="Buscar por nombre o email">
-      <select id="cityFilter">
+
+      <select id="filtroCiudad">
         <option value="">Todas las ciudades</option>
         <option value="Bogotá">Bogotá</option>
         <option value="Medellín">Medellín</option>
@@ -21,7 +27,8 @@
         <option value="Barranquilla">Barranquilla</option>
         <option value="Cartagena">Cartagena</option>
       </select>
-      <select id="specialtyFilter">
+
+      <select id="filtroEspecialidad">
         <option value="">Todas las especialidades</option>
         <option value="Medicina general">Medicina general</option>
         <option value="Pediatría">Pediatría</option>
@@ -29,67 +36,93 @@
         <option value="Dermatología">Dermatología</option>
         <option value="Nutrición">Nutrición</option>
         <option value="Ginecología">Ginecología</option>
+        <option value="Cardiología">Cardiología</option>
+        <option value="Fisioterapia">Fisioterapia</option>
+        <option value="Psiquiatría">Psiquiatría</option>
+        <option value="Endocrinología">Endocrinología</option>
       </select>
-      <button id="addPatientBtn">Agregar paciente</button>
+
+      <button id="btnAgregar">Agregar paciente</button>
     </section>
 
-    <section class="cards-container" id="cardsContainer">
-      <!-- aquí se renderizan las cards -->
-    </section>
+    <!-- GRID DE CARDS -->
+    <section id="cardsContainer" class="cards-grid"></section>
 
+    <!-- GRÁFICO -->
     <section class="chart-section">
       <canvas id="chartEspecialidades"></canvas>
     </section>
+
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="patientModal">
-    <div class="modal__content">
-      <h2 id="modalTitle">Nuevo paciente</h2>
-      <form id="patientForm">
-        <input type="hidden" id="patientId">
-        <div class="form__group">
-          <label>Nombre</label>
-          <input type="text" id="nombreInput" required>
-        </div>
-        <div class="form__group">
-          <label>Email</label>
-          <input type="email" id="emailInput" required>
-        </div>
-        <div class="form__group">
-          <label>Ciudad</label>
-          <input type="text" id="ciudadInput" required>
-        </div>
-        <div class="form__group">
-          <label>Especialidad</label>
-          <input type="text" id="especialidadInput" required>
-        </div>
-        <div class="form__group">
-          <label>Edad</label>
-          <input type="number" id="edadInput" required>
-        </div>
-        <div class="form__group">
-          <label>EPS</label>
-          <input type="text" id="epsInput" required>
-        </div>
-        <div class="form__group">
-          <label>Monto USD</label>
-          <input type="number" id="montoInput" required>
-        </div>
-        <div class="form__group">
-          <label>Activo</label>
-          <input type="checkbox" id="activoInput">
-        </div>
-        <div class="modal__actions">
-          <button type="submit">Guardar</button>
-          <button type="button" id="closeModalBtn">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <!-- MODAL -->
+  <section id="modal" class="modal hidden">
+    <form id="modalForm" class="modal-content">
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <h2 id="modalTitulo">Agregar paciente</h2>
+
+      <input type="hidden" id="modalId">
+
+      <label>Nombre</label>
+      <input type="text" id="modalNombre" required>
+
+      <label>Email</label>
+      <input type="email" id="modalEmail" required>
+
+      <label>Ciudad</label>
+      <select id="modalCiudad" required>
+        <option value="Bogotá">Bogotá</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Cali">Cali</option>
+        <option value="Barranquilla">Barranquilla</option>
+        <option value="Cartagena">Cartagena</option>
+      </select>
+
+      <label>Especialidad</label>
+      <select id="modalEspecialidad" required>
+        <option value="Medicina general">Medicina general</option>
+        <option value="Pediatría">Pediatría</option>
+        <option value="Psicología">Psicología</option>
+        <option value="Dermatología">Dermatología</option>
+        <option value="Nutrición">Nutrición</option>
+        <option value="Ginecología">Ginecología</option>
+        <option value="Cardiología">Cardiología</option>
+        <option value="Fisioterapia">Fisioterapia</option>
+        <option value="Psiquiatría">Psiquiatría</option>
+        <option value="Endocrinología">Endocrinología</option>
+      </select>
+
+      <label>Edad</label>
+      <input type="number" id="modalEdad" min="18" max="90" required>
+
+      <label>Fecha última cita</label>
+      <input type="date" id="modalFecha" required>
+
+      <label>EPS</label>
+      <select id="modalEPS" required>
+        <option value="Sura">Sura</option>
+        <option value="Nueva EPS">Nueva EPS</option>
+        <option value="Sanitas">Sanitas</option>
+        <option value="Compensar">Compensar</option>
+        <option value="Particular">Particular</option>
+      </select>
+
+      <label>Activo</label>
+      <select id="modalActivo">
+        <option value="true">Activo</option>
+        <option value="false">Inactivo</option>
+      </select>
+
+      <section class="modal-buttons">
+        <button type="submit" class="btn-save">Guardar</button>
+        <button type="button" id="btnCerrarModal" class="btn-close">Cancelar</button>
+      </section>
+
+    </form>
+  </section>
+
   <script src="pacientes.js"></script>
   <script src="app.js"></script>
+
 </body>
 </html>

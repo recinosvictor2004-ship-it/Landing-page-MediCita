@@ -1,211 +1,196 @@
-let datosPacientes = [];
-let chart;
+// ===============================
+// FASE 5 — CRUD + localStorage
+// ===============================
 
-// cargarDatos: lee de localStorage o usa dataset inicial
+let datos = [];
+
+// -------------------------------
+// cargarDatos()
+// -------------------------------
 function cargarDatos() {
-  const almacenados = localStorage.getItem('medicitaPacientes');
-  if (almacenados) {
-    datosPacientes = JSON.parse(almacenados);
+  const guardados = localStorage.getItem("pacientes");
+
+  if (guardados) {
+    datos = JSON.parse(guardados);
   } else {
-    datosPacientes = [...pacientes]; // viene de pacientes.js
+    datos = pacientes; // viene de pacientes.js
     guardarDatos();
   }
+
+  renderizarCards(datos);
+  actualizarGrafico();
 }
 
-// guardarDatos: guarda en localStorage
+// -------------------------------
+// guardarDatos()
+// -------------------------------
 function guardarDatos() {
-  localStorage.setItem('medicitaPacientes', JSON.stringify(datosPacientes));
+  localStorage.setItem("pacientes", JSON.stringify(datos));
 }
 
-// renderizarCards: construye HTML de las cards
+// -------------------------------
+// renderizarCards(lista)
+// -------------------------------
 function renderizarCards(lista) {
-  const contenedor = document.getElementById('cardsContainer');
-  contenedor.innerHTML = '';
+  const cont = document.getElementById("cardsContainer");
+  cont.innerHTML = "";
 
   lista.forEach(p => {
-    const adherencia = p.activo ? 85 : 60; // ejemplo simple
-    const cardHtml = `
-      <article class="card">
-        <div class="card__header">
-          <h3>${p.nombre}</h3>
-          <span class="card__badge">${p.eps}</span>
-        </div>
-        <div class="card__body">
-          <p><strong>Ciudad:</strong> ${p.ciudad}</p>
-          <p><strong>Especialidad:</strong> ${p.especialidad}</p>
-          <p><strong>Email:</strong> ${p.email}</p>
-          <p><strong>Monto USD:</strong> ${p.montoUSD}</p>
-          <p><strong>Activo:</strong> ${p.activo ? 'Sí' : 'No'}</p>
-        </div>
-        <div class="card__actions">
-          <button class="btn-edit" onclick="abrirModal(${p.id})">Editar</button>
-          <button class="btn-delete" onclick="eliminarPaciente(${p.id})">Eliminar</button>
-        </div>
-      </article>
+    const card = document.createElement("article");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${p.nombre}</h3>
+      <p><strong>Email:</strong> ${p.email}</p>
+      <p><strong>Ciudad:</strong> ${p.ciudad}</p>
+      <p><strong>Especialidad:</strong> ${p.especialidad}</p>
+      <p><strong>Edad:</strong> ${p.edad}</p>
+      <p><strong>EPS:</strong> ${p.eps}</p>
+      <span class="badge badge-${p.activo}">${p.activo ? "Activo" : "Inactivo"}</span>
+
+      <section class="card-buttons">
+        <button onclick="abrirModal(${p.id})">Editar</button>
+        <button onclick="eliminarPaciente(${p.id})">Eliminar</button>
+      </section>
     `;
-    contenedor.innerHTML += cardHtml;
+
+    cont.appendChild(card);
   });
 }
 
-// filtrar: aplica búsqueda + filtros
+// -------------------------------
+// filtrar()
+// -------------------------------
 function filtrar() {
-  const texto = document.getElementById('searchInput').value.toLowerCase();
-  const ciudad = document.getElementById('cityFilter').value;
-  const especialidad = document.getElementById('specialtyFilter').value;
+  const texto = document.getElementById("searchInput").value.toLowerCase();
+  const ciudad = document.getElementById("filtroCiudad").value;
+  const esp = document.getElementById("filtroEspecialidad").value;
 
-  const filtrados = datosPacientes.filter(p => {
-    const coincideTexto =
-      p.nombre.toLowerCase().includes(texto) ||
-      p.email.toLowerCase().includes(texto);
+  let lista = datos.filter(p =>
+    (p.nombre.toLowerCase().includes(texto) ||
+     p.email.toLowerCase().includes(texto)) &&
+    (ciudad === "" || p.ciudad === ciudad) &&
+    (esp === "" || p.especialidad === esp)
+  );
 
-    const coincideCiudad = ciudad ? p.ciudad === ciudad : true;
-    const coincideEspecialidad = especialidad ? p.especialidad === especialidad : true;
-
-    return coincideTexto && coincideCiudad && coincideEspecialidad;
-  });
-
-  renderizarCards(filtrados);
+  renderizarCards(lista);
 }
 
-// abrirModal: nuevo o editar
+// -------------------------------
+// abrirModal(id)
+// -------------------------------
 function abrirModal(id) {
-  const modal = document.getElementById('patientModal');
-  modal.classList.add('modal--visible');
-
-  const form = document.getElementById('patientForm');
-  form.reset();
+  const modal = document.getElementById("modal");
+  modal.classList.remove("hidden");
 
   if (id) {
-    const paciente = datosPacientes.find(p => p.id === id);
-    document.getElementById('modalTitle').textContent = 'Editar paciente';
-    document.getElementById('patientId').value = paciente.id;
-    document.getElementById('nombreInput').value = paciente.nombre;
-    document.getElementById('emailInput').value = paciente.email;
-    document.getElementById('ciudadInput').value = paciente.ciudad;
-    document.getElementById('especialidadInput').value = paciente.especialidad;
-    document.getElementById('edadInput').value = paciente.edad;
-    document.getElementById('epsInput').value = paciente.eps;
-    document.getElementById('montoInput').value = paciente.montoUSD;
-    document.getElementById('activoInput').checked = paciente.activo;
+    const p = datos.find(x => x.id === id);
+
+    document.getElementById("modalTitulo").textContent = "Editar paciente";
+    document.getElementById("modalId").value = p.id;
+    document.getElementById("modalNombre").value = p.nombre;
+    document.getElementById("modalEmail").value = p.email;
+    document.getElementById("modalCiudad").value = p.ciudad;
+    document.getElementById("modalEspecialidad").value = p.especialidad;
+    document.getElementById("modalEdad").value = p.edad;
+    document.getElementById("modalFecha").value = p.fechaUltimaCita;
+    document.getElementById("modalEPS").value = p.eps;
+    document.getElementById("modalActivo").value = p.activo;
   } else {
-    document.getElementById('modalTitle').textContent = 'Nuevo paciente';
-    document.getElementById('patientId').value = '';
+    document.getElementById("modalTitulo").textContent = "Agregar paciente";
+    document.getElementById("modalForm").reset();
+    document.getElementById("modalId").value = "";
   }
 }
 
-// cerrar modal
-function cerrarModal() {
-  const modal = document.getElementById('patientModal');
-  modal.classList.remove('modal--visible');
-}
-
-// guardarPaciente: alta o edición
+// -------------------------------
+// guardarPaciente()
+// -------------------------------
 function guardarPaciente() {
-  const id = document.getElementById('patientId').value;
-  const nombre = document.getElementById('nombreInput').value.trim();
-  const email = document.getElementById('emailInput').value.trim();
-  const ciudad = document.getElementById('ciudadInput').value.trim();
-  const especialidad = document.getElementById('especialidadInput').value.trim();
-  const edad = parseInt(document.getElementById('edadInput').value, 10);
-  const eps = document.getElementById('epsInput').value.trim();
-  const montoUSD = parseFloat(document.getElementById('montoInput').value);
-  const activo = document.getElementById('activoInput').checked;
-
-  if (!nombre || !email) {
-    alert('Nombre y email son obligatorios');
-    return;
-  }
+  const id = document.getElementById("modalId").value;
+  const nuevo = {
+    id: id ? Number(id) : datos.length + 1,
+    nombre: document.getElementById("modalNombre").value,
+    email: document.getElementById("modalEmail").value,
+    ciudad: document.getElementById("modalCiudad").value,
+    especialidad: document.getElementById("modalEspecialidad").value,
+    edad: Number(document.getElementById("modalEdad").value),
+    fechaUltimaCita: document.getElementById("modalFecha").value,
+    eps: document.getElementById("modalEPS").value,
+    montoUSD: obtenerTarifa(document.getElementById("modalEspecialidad").value),
+    activo: document.getElementById("modalActivo").value === "true"
+  };
 
   if (id) {
-    const idx = datosPacientes.findIndex(p => p.id === parseInt(id, 10));
-    datosPacientes[idx] = {
-      ...datosPacientes[idx],
-      nombre,
-      email,
-      ciudad,
-      especialidad,
-      edad,
-      eps,
-      montoUSD,
-      activo
-    };
+    const index = datos.findIndex(x => x.id === Number(id));
+    datos[index] = nuevo;
   } else {
-    const nuevoId = datosPacientes.length
-      ? Math.max(...datosPacientes.map(p => p.id)) + 1
-      : 1;
-
-    datosPacientes.push({
-      id: nuevoId,
-      nombre,
-      email,
-      ciudad,
-      especialidad,
-      edad,
-      eps,
-      montoUSD,
-      activo
-    });
+    datos.push(nuevo);
   }
 
   guardarDatos();
-  filtrar();
+  renderizarCards(datos);
   actualizarGrafico();
   cerrarModal();
 }
 
-// eliminarPaciente
+// -------------------------------
+// eliminarPaciente(id)
+// -------------------------------
 function eliminarPaciente(id) {
-  if (!confirm('¿Seguro que deseas eliminar este paciente?')) return;
-  datosPacientes = datosPacientes.filter(p => p.id !== id);
+  if (!confirm("¿Eliminar este paciente?")) return;
+
+  datos = datos.filter(p => p.id !== id);
   guardarDatos();
-  filtrar();
+  renderizarCards(datos);
   actualizarGrafico();
 }
 
-// actualizarGrafico: conteo por especialidad
+// -------------------------------
+// cerrarModal()
+// -------------------------------
+function cerrarModal() {
+  document.getElementById("modal").classList.add("hidden");
+}
+
+// -------------------------------
+// actualizarGrafico()
+// -------------------------------
 function actualizarGrafico() {
   const conteo = {};
-  datosPacientes.forEach(p => {
+
+  datos.forEach(p => {
     conteo[p.especialidad] = (conteo[p.especialidad] || 0) + 1;
   });
 
-  const labels = Object.keys(conteo);
-  const valores = Object.values(conteo);
+  const ctx = document.getElementById("chartEspecialidades");
 
-  const ctx = document.getElementById('chartEspecialidades').getContext('2d');
-
-  if (chart) {
-    chart.destroy();
-  }
-
-  chart = new Chart(ctx, {
-    type: 'bar',
+  new Chart(ctx, {
+    type: "bar",
     data: {
-      labels,
+      labels: Object.keys(conteo),
       datasets: [{
-        label: 'Pacientes por especialidad',
-        data: valores,
-        backgroundColor: '#2b7de9'
+        label: "Pacientes por especialidad",
+        data: Object.values(conteo),
+        backgroundColor: "#2b7de9"
       }]
     }
   });
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-  cargarDatos();
-  filtrar();
-  actualizarGrafico();
-
-  document.getElementById('searchInput').addEventListener('input', filtrar);
-  document.getElementById('cityFilter').addEventListener('change', filtrar);
-  document.getElementById('specialtyFilter').addEventListener('change', filtrar);
-
-  document.getElementById('addPatientBtn').addEventListener('click', () => abrirModal(null));
-  document.getElementById('closeModalBtn').addEventListener('click', cerrarModal);
-
-  document.getElementById('patientForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    guardarPaciente();
-  });
+// -------------------------------
+// EVENTOS
+// -------------------------------
+document.getElementById("searchInput").addEventListener("input", filtrar);
+document.getElementById("filtroCiudad").addEventListener("change", filtrar);
+document.getElementById("filtroEspecialidad").addEventListener("change", filtrar);
+document.getElementById("btnAgregar").addEventListener("click", () => abrirModal(null));
+document.getElementById("btnCerrarModal").addEventListener("click", cerrarModal);
+document.getElementById("modalForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  guardarPaciente();
 });
+
+// Inicializar
+cargarDatos();
+actualizarGrafico();
