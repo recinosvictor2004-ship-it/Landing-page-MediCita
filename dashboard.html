@@ -5,60 +5,84 @@
   <title>Dashboard paciente - MediCita</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
+
 <body>
-  <div class="layout">
+
+  <section class="layout">
+
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-      <div class="sidebar__logo">MediCita</div>
+
+      <header class="sidebar__logo">
+        MediCita
+      </header>
+
       <nav class="sidebar__nav">
         <a href="#">Inicio</a>
         <a href="#">Mis citas</a>
         <a href="#">Pagos</a>
         <a href="#">Perfil</a>
       </nav>
-      <div class="sidebar__user">
-        <img src="https://placehold.co/64x64" alt="Avatar">
-        <span>Paciente Demo</span>
-        <button class="btn-logout">Cerrar sesión</button>
-      </div>
+
+      <section class="sidebar__user">
+        <figure>
+          <img src="https://placehold.co/64x64" alt="Avatar">
+        </figure>
+
+        <span id="nombreUsuario">Paciente</span>
+
+        <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+      </section>
+
     </aside>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="content">
+
+      <!-- BOTÓN HAMBURGUESA -->
       <button class="hamburger-btn" id="hamburgerBtn">≡</button>
 
+      <!-- KPI CARDS -->
       <section class="kpi-section">
-        <div class="kpi-card">
-          <div class="kpi-card__icon">📅</div>
-          <div class="kpi-card__body">
+
+        <article class="kpi-card">
+          <span class="kpi-card__icon">📅</span>
+          <section class="kpi-card__body">
             <h3>Citas activas</h3>
             <p class="kpi-card__value">3</p>
-            <span class="kpi-card__delta">+1 vs mes anterior</span>
-          </div>
-        </div>
+            <small class="kpi-card__delta">+1 vs mes anterior</small>
+          </section>
+        </article>
 
-        <div class="kpi-card">
-          <div class="kpi-card__icon">✅</div>
-          <div class="kpi-card__body">
+        <article class="kpi-card">
+          <span class="kpi-card__icon">✅</span>
+          <section class="kpi-card__body">
             <h3>Adherencia al tratamiento</h3>
             <p class="kpi-card__value">88%</p>
+
             <div class="progress">
               <div class="progress__bar" style="width: 88%;"></div>
             </div>
-            <span class="kpi-card__delta">+5% vs mes anterior</span>
-          </div>
-        </div>
 
-        <div class="kpi-card">
-          <div class="kpi-card__icon">💳</div>
-          <div class="kpi-card__body">
+            <small class="kpi-card__delta">+5% vs mes anterior</small>
+          </section>
+        </article>
+
+        <article class="kpi-card">
+          <span class="kpi-card__icon">💳</span>
+          <section class="kpi-card__body">
             <h3>Próximo pago</h3>
             <p class="kpi-card__value">2026-07-15</p>
-            <span class="kpi-card__delta">Consulta en COP 120.000</span>
-          </div>
-        </div>
+            <small class="kpi-card__delta">Consulta en COP 120.000</small>
+          </section>
+        </article>
+
       </section>
 
+      <!-- TABLA DE CITAS -->
       <section class="table-section">
         <h2>Mis citas</h2>
+
         <table class="appointments-table">
           <thead>
             <tr>
@@ -70,7 +94,9 @@
               <th>Estado</th>
             </tr>
           </thead>
+
           <tbody>
+
             <tr>
               <td>Psicología</td>
               <td class="col-doctor">Dra. Gómez</td>
@@ -79,6 +105,7 @@
               <td>150.000</td>
               <td><span class="badge badge--confirmed">Confirmada</span></td>
             </tr>
+
             <tr class="row-alt">
               <td>Medicina general</td>
               <td class="col-doctor">Dr. Pérez</td>
@@ -87,6 +114,7 @@
               <td>90.000</td>
               <td><span class="badge badge--completed">Completada</span></td>
             </tr>
+
             <tr>
               <td>Dermatología</td>
               <td class="col-doctor">Dra. Ruiz</td>
@@ -95,12 +123,32 @@
               <td>180.000</td>
               <td><span class="badge badge--cancelled">Cancelada</span></td>
             </tr>
-            <!-- agrega más filas de ejemplo si quieres -->
+
+            <tr class="row-alt">
+              <td>Pediatría</td>
+              <td class="col-doctor">Dr. López</td>
+              <td>Virtual</td>
+              <td class="col-date">2026-07-12</td>
+              <td>110.000</td>
+              <td><span class="badge badge--confirmed">Confirmada</span></td>
+            </tr>
+
+            <tr>
+              <td>Nutrición</td>
+              <td class="col-doctor">Dra. Ramírez</td>
+              <td>Virtual</td>
+              <td class="col-date">2026-07-18</td>
+              <td>130.000</td>
+              <td><span class="badge badge--completed">Completada</span></td>
+            </tr>
+
           </tbody>
         </table>
       </section>
+
     </main>
-  </div>
+
+  </section>
 
   <script src="dashboard.js"></script>
 </body>
