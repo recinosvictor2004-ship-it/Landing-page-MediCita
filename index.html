@@ -5,11 +5,14 @@
   <title>MediCita - Telemedicina</title>
   <link rel="stylesheet" href="landing.css">
 </head>
+
 <body>
-  <header id="inicio">
-    <nav class="nav">
-      <div class="nav__logo">MediCita</div>
-      <ul class="nav__menu">
+
+  <!-- ENCABEZADO -->
+  <header>
+    <nav>
+      <h1>MediCita</h1>
+      <ul>
         <li><a href="#especialidades">Especialidades</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
         <li><a href="#estadisticas">Estadísticas</a></li>
@@ -17,106 +20,133 @@
       </ul>
     </nav>
 
-    <section class="hero">
-      <div class="hero__content">
-        <h1>Tu cita médica virtual, sin filas ni tráfico</h1>
+    <!-- HERO -->
+    <section id="hero">
+      <article>
+        <h2>Tu cita médica virtual, sin filas ni tráfico</h2>
         <p>Agenda consultas con médicos certificados desde cualquier ciudad de Colombia.</p>
-        <a href="#registro" class="btn btn--primary">Regístrate ahora</a>
-      </div>
-      <div class="hero__image">
+        <a href="#registro" class="btn">Regístrate ahora</a>
+      </article>
+
+      <figure>
         <img src="https://placehold.co/480x320" alt="Telemedicina MediCita">
-      </div>
+      </figure>
     </section>
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
-    <section id="especialidades" class="section section--light">
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades">
       <h2>Especialidades médicas</h2>
-      <div class="grid grid--specialties">
-        <article class="card">
+
+      <section class="grid">
+        <article>
           <h3>Medicina general</h3>
           <p>Atención integral para tus necesidades básicas de salud.</p>
         </article>
-        <article class="card">
+
+        <article>
           <h3>Pediatría</h3>
           <p>Cuidado especializado para niñas y niños.</p>
         </article>
-        <article class="card">
+
+        <article>
           <h3>Psicología</h3>
           <p>Apoyo emocional y salud mental.</p>
         </article>
-        <article class="card">
+
+        <article>
           <h3>Dermatología</h3>
           <p>Diagnóstico y tratamiento de problemas de piel.</p>
         </article>
-        <article class="card">
+
+        <article>
           <h3>Nutrición</h3>
           <p>Planes alimenticios personalizados.</p>
         </article>
-        <article class="card">
+
+        <article>
           <h3>Ginecología</h3>
           <p>Salud integral de la mujer.</p>
         </article>
-      </div>
+      </section>
     </section>
 
-    <section id="estadisticas" class="section">
+    <!-- ESTADÍSTICAS -->
+    <section id="estadisticas">
       <h2>Resultados que generan confianza</h2>
-      <div class="stats">
-        <div class="stat">
-          <span class="stat__value">15.000+</span>
-          <span class="stat__label">Pacientes atendidos</span>
-        </div>
-        <div class="stat">
-          <span class="stat__value">200+</span>
-          <span class="stat__label">Médicos aliados</span>
-        </div>
-        <div class="stat">
-          <span class="stat__value">97%</span>
-          <span class="stat__label">Satisfacción</span>
-        </div>
-      </div>
+
+      <section class="stats">
+        <article>
+          <strong>15.000+</strong>
+          <span>Pacientes atendidos</span>
+        </article>
+
+        <article>
+          <strong>200+</strong>
+          <span>Médicos aliados</span>
+        </article>
+
+        <article>
+          <strong>97%</strong>
+          <span>Satisfacción</span>
+        </article>
+      </section>
     </section>
 
-    <section id="testimonios" class="section section--light">
+    <!-- TESTIMONIOS -->
+    <section id="testimonios">
       <h2>Testimonios de pacientes</h2>
-      <div class="grid grid--testimonials">
-        <article class="testimonial">
-          <p>"Pude hablar con un médico en menos de 30 minutos, sin salir de casa."</p>
-          <span class="testimonial__author">Laura, Bogotá</span>
+
+      <section class="grid">
+        <article>
+          <blockquote>
+            "Pude hablar con un médico en menos de 30 minutos, sin salir de casa."
+          </blockquote>
+          <cite>Laura, Bogotá</cite>
         </article>
-        <article class="testimonial">
-          <p>"Ideal para controles frecuentes, me ahorra tiempo y dinero."</p>
-          <span class="testimonial__author">Carlos, Medellín</span>
+
+        <article>
+          <blockquote>
+            "Ideal para controles frecuentes, me ahorra tiempo y dinero."
+          </blockquote>
+          <cite>Carlos, Medellín</cite>
         </article>
-      </div>
+      </section>
     </section>
 
-    <section id="registro" class="section">
+    <!-- REGISTRO -->
+    <section id="registro">
       <h2>Regístrate para tu próxima cita</h2>
-      <form class="form">
-        <div class="form__group">
-          <label for="nombre">Nombre completo</label>
-          <input type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="form__group">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <button type="submit" class="btn btn--primary">Crear cuenta</button>
+
+      <form id="registroForm">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" required>
+
+        <button type="submit" class="btn">Crear cuenta</button>
       </form>
     </section>
+
   </main>
 
-  <footer class="footer">
+  <!-- PIE DE PÁGINA -->
+  <footer>
     <p>MediCita © 2026</p>
-    <div class="footer__social">
+    <nav>
       <a href="#">Instagram</a>
       <a href="#">Facebook</a>
       <a href="#">LinkedIn</a>
-    </div>
+    </nav>
   </footer>
 
-  <button class="floating-btn">Agendar cita</button>
+  <!-- BOTÓN FLOTANTE -->
+  <button id="agendarBtn" class="floating-btn">Agendar cita</button>
+
+  <script src="landing.js"></script>
 </body>
 </html>
